@@ -52,7 +52,7 @@ option(ENABLE_WEXTRA "" OFF)
 option(IGNORE_EMPTY_BUILD_TYPE "" OFF)
 option(BUILD_UNITY_PLUGIN "Build plugin library for Unity." OFF)
 option(BUILD_ANIMATION_ENCODING "" OFF)
-option(BUILD_FOR_GLTF "" OFF)
+option(BUILD_FOR_GLTF "" ON)
 option(BUILD_MAYA_PLUGIN "Build plugin library for Maya." OFF)
 option(BUILD_USD_PLUGIN "Build plugin library for USD." OFF)
 
@@ -1089,6 +1089,11 @@ else()
   # decoder is planned in future releases.
   draco_enable_feature(FEATURE DRACO_ATTRIBUTE_INDICES_DEDUPLICATION_SUPPORTED)
   draco_enable_feature(FEATURE DRACO_ATTRIBUTE_VALUES_DEDUPLICATION_SUPPORTED)
+
+  add_library(draco-c SHARED src/draco-c.cc)
+  target_link_libraries(draco-c dracoenc dracodec)
+  add_executable(draco-c-test src/draco-c-test.cc)
+  target_link_libraries(draco-c-test draco-c)
 
   if(BUILD_SHARED_LIBS)
     set_target_properties(dracodec PROPERTIES SOVERSION 1)

@@ -56,12 +56,12 @@ struct MeshPredictionSchemeEncoderFactory {
           new MeshPredictionSchemeConstrainedMultiParallelogramEncoder<
               DataTypeT, TransformT, MeshDataT>(attribute, transform,
                                                 mesh_data));
-    } else if (method == MESH_PREDICTION_TEX_COORDS_PORTABLE) {
+    }/* else if (method == MESH_PREDICTION_TEX_COORDS_PORTABLE) {
       return std::unique_ptr<PredictionSchemeEncoder<DataTypeT, TransformT>>(
           new MeshPredictionSchemeTexCoordsPortableEncoder<
               DataTypeT, TransformT, MeshDataT>(attribute, transform,
                                                 mesh_data));
-    }
+    }*/
 #ifdef DRACO_NORMAL_ENCODING_SUPPORTED
     else if (method == MESH_PREDICTION_GEOMETRIC_NORMAL) {
       return std::unique_ptr<PredictionSchemeEncoder<DataTypeT, TransformT>>(
